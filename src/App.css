@@ -1,3 +1,20 @@
+* {
+  font-family: 'Noto Sans', sans-serif;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: #b0c4de;
+  width: 100vw;
+  height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .display-center {
   display: flex;
   flex-direction: column;
@@ -26,4 +43,110 @@
   --bs-btn-hover-color: #ffffff;
   --bs-btn-active-color: #ffffff;
   --bs-btn-disabled-color: #ffffff;
+}
+
+.template-css {
+  width: 500px;
+  height: 600px;
+  background: #ffffff;
+  border-radius: 13px;
+  box-shadow: rgba(50, 50, 105, 0.15) 0px 2px 5px 0px,
+    rgba(0, 0, 0, 0.05) 0px 1px 1px 0px;
+}
+
+.todo-block {
+  padding-top: 15px;
+}
+
+.todo-block h1 {
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.todo-block .input-wrap {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+
+.todo-block .input-box {
+  width: 90%;
+  height: 50px;
+  padding: 0px 10px;
+  border: 1px solid #dcdcdc;
+  border-radius: 2em;
+}
+
+.todo-block .add-btn {
+  position: absolute;
+  right: 6%;
+  border: none;
+  background: transparent;
+  font-size: 2em;
+  font-weight: 500;
+  color: #ba55d3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+}
+
+.todo-block .header-line {
+  width: 90%;
+  height: 1px;
+  background: #dcdcdc;
+  margin: 20px auto;
+}
+
+.todo-list {
+  width: 90%;
+  margin: 0 auto;
+  overflow-y: auto;
+  height: 400px;
+}
+
+.item-block {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #dcdcdc;
+  padding: 10px 20px;
+  margin-bottom: 10px;
+}
+
+.check-circle {
+  width: 32px;
+  height: 32px;
+  border-radius: 16px;
+  border: 1px solid #ba55d3;
+  font-size: 18px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 10px;
+  color: #ba55d3;
+}
+
+.item-text {
+  font-size: 1em;
+  color: #222425;
+  flex: 1;
+}
+
+.item-remove {
+  cursor: pointer;
+  color: #222425;
+}
+
+.item-remove:hover {
+  color: #ba55d3;
+}
+
+@media (max-width: 450px) {
+  .template-css {
+    width: 300px;
+  }
 }
