@@ -6,11 +6,18 @@ import { Link } from 'react-router-dom';
 import api from '../utils/api';
 import { useNavigate } from 'react-router-dom';
 
+interface User {
+  email: string;
+  name: string;
+  _id: string;
+}
+
 function LoginPage() {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [error, setError] = useState<string>('');
   const navigate = useNavigate();
+  const [user, setUser] = useState<User | null>(null);
 
   const handleLogin = async (
     event: React.FormEvent<HTMLFormElement>
@@ -22,6 +29,8 @@ function LoginPage() {
         password,
       });
       if (response.status === 200) {
+        setUser(response.data.user);
+        sessionStorage.setItem('token', response.data.token);
         navigate('/');
       }
     } catch (err) {
