@@ -1,21 +1,59 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import Alert from 'react-bootstrap/Alert';
 import { Link } from 'react-router-dom';
+import api from '../utils/api';
+import { useNavigate } from 'react-router-dom';
 
 function LoginPage() {
+  const [email, setEmail] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
+  const [error, setError] = useState<string>('');
+  const navigate = useNavigate();
+
+  const handleLogin = async (
+    event: React.FormEvent<HTMLFormElement>
+  ): Promise<void> => {
+    event.preventDefault();
+    try {
+      const response = await api.post('/user/login', {
+        email,
+        password,
+      });
+      if (response.status === 200) {
+        navigate('/');
+      }
+    } catch (err) {
+      if (err instanceof Error) setError(err.message);
+    }
+  };
+
   return (
     <div className='display-center'>
-      <Form className='login-box'>
+      {error && <Alert variant='danger'>{error}</Alert>}
+      <Form className='login-box' onSubmit={handleLogin}>
         <h1>로그인</h1>
         <Form.Group className='mb-3' controlId='formBasicEmail'>
           <Form.Label>Email address</Form.Label>
-          <Form.Control type='email' placeholder='Enter email' />
+          <Form.Control
+            type='email'
+            placeholder='Enter email'
+            onChange={(event: React.ChangeEvent<HTMLInputElement>): void =>
+              setEmail(event.target.value)
+            }
+          />
         </Form.Group>
 
         <Form.Group className='mb-3' controlId='formBasicPassword'>
           <Form.Label>Password</Form.Label>
-          <Form.Control type='password' placeholder='Password' />
+          <Form.Control
+            type='password'
+            placeholder='Password'
+            onChange={(event: React.ChangeEvent<HTMLInputElement>): void =>
+              setPassword(event.target.value)
+            }
+          />
         </Form.Group>
 
         <div className='button-box'>
