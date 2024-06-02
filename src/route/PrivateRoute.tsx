@@ -1,8 +1,9 @@
 import React from 'react';
 import { Navigate } from 'react-router-dom';
+import { User } from '../model/user';
 
 interface OwnProps {
-  user: string | null;
+  user: User | null;
   children: JSX.Element;
 }
 

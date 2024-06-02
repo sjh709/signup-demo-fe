@@ -2,21 +2,21 @@ import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Alert from 'react-bootstrap/Alert';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 import api from '../utils/api';
+import { User } from '../model/user';
 
-interface User {
-  email: string;
-  name: string;
-  _id: string;
-}
-
-function LoginPage() {
+function LoginPage({
+  user,
+  setUser,
+}: {
+  user: User | null;
+  setUser: React.Dispatch<React.SetStateAction<User | null>>;
+}) {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [error, setError] = useState<string>('');
   const navigate = useNavigate();
-  const [user, setUser] = useState<User | null>(null);
 
   const handleLogin = async (
     event: React.FormEvent<HTMLFormElement>
@@ -38,6 +38,10 @@ function LoginPage() {
       if (err instanceof Error) setError(err.message);
     }
   };
+
+  if (user) {
+    return <Navigate to='/' />;
+  }
 
   return (
     <div className='display-center'>
