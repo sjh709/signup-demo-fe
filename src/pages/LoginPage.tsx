@@ -2,9 +2,8 @@ import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Alert from 'react-bootstrap/Alert';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import api from '../utils/api';
-import { useNavigate } from 'react-router-dom';
 
 interface User {
   email: string;
@@ -31,6 +30,8 @@ function LoginPage() {
       if (response.status === 200) {
         setUser(response.data.user);
         sessionStorage.setItem('token', response.data.token);
+        api.defaults.headers['authorization'] = 'Bearer ' + response.data.token;
+        setError('');
         navigate('/');
       }
     } catch (err) {
