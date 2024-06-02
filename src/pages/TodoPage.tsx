@@ -1,7 +1,7 @@
 import React from 'react';
 
-const TodoPage: React.FC = () => {
+function TodoPage() {
   return <div>TodoPage</div>;
-};
+}
 
 export default TodoPage;
