@@ -139,6 +139,7 @@ body {
 .item-remove {
   cursor: pointer;
   color: #222425;
+  margin-left: 3rem;
 }
 
 .item-remove:hover {

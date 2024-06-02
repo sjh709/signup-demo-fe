@@ -10,12 +10,14 @@ interface OwnProps {
 }
 
 function TodoItem({ item, toggleComplete, deleteItem }: OwnProps) {
+  console.log('it', item);
   return (
     <div className='item-block'>
       <div className='check-circle' onClick={() => toggleComplete(item._id)}>
         {item.isComplete && <FontAwesomeIcon icon={faCheck} />}
       </div>
       <div className='item-text'>{item.task}</div>
+      <div>{item.author?.name}</div>
       <div className='item-remove'>
         <FontAwesomeIcon icon={faTrash} onClick={() => deleteItem(item._id)} />
       </div>
