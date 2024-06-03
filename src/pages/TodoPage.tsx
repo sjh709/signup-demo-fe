@@ -5,8 +5,13 @@ import { Task } from '../model/task';
 import api from '../utils/api';
 import TodoList from '../components/TodoList';
 import TodoItem from '../components/TodoItem';
+import { User } from '../model/user';
 
-function TodoPage() {
+function TodoPage({
+  setUser,
+}: {
+  setUser: React.Dispatch<React.SetStateAction<User | null>>;
+}) {
   const [todoList, setTodoList] = useState<[] | Task[]>([]);
   const [todoValue, setTodoValue] = useState<string>('');
 
@@ -65,7 +70,7 @@ function TodoPage() {
 
   return (
     <div className='display-center'>
-      <TodoTemplate>
+      <TodoTemplate setUser={setUser}>
         <TodoHeader
           todoValue={todoValue}
           setTodoValue={setTodoValue}
