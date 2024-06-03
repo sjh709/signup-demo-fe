@@ -64,27 +64,29 @@ function TodoPage() {
   }, []);
 
   return (
-    <TodoTemplate>
-      <TodoHeader
-        todoValue={todoValue}
-        setTodoValue={setTodoValue}
-        addTask={addTask}
-      />
-      <TodoList>
-        {todoList.length > 0 ? (
-          todoList.map((item, index) => (
-            <TodoItem
-              item={item}
-              key={index}
-              toggleComplete={toggleComplete}
-              deleteItem={deleteItem}
-            />
-          ))
-        ) : (
-          <h2>등록된 할일이 없습니다.</h2>
-        )}
-      </TodoList>
-    </TodoTemplate>
+    <div className='display-center'>
+      <TodoTemplate>
+        <TodoHeader
+          todoValue={todoValue}
+          setTodoValue={setTodoValue}
+          addTask={addTask}
+        />
+        <TodoList>
+          {todoList.length > 0 ? (
+            todoList.map((item, index) => (
+              <TodoItem
+                item={item}
+                key={index}
+                toggleComplete={toggleComplete}
+                deleteItem={deleteItem}
+              />
+            ))
+          ) : (
+            <h2>등록된 할일이 없습니다.</h2>
+          )}
+        </TodoList>
+      </TodoTemplate>
+    </div>
   );
 }
 
